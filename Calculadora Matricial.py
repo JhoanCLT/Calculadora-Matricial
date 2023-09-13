@@ -288,4 +288,4 @@ while opcion >= 1 and opcion <= 7:
                 print()
                 print("La determinante es: ", round(determinante))
 
-                print("      -------FIN DE CALCULO DE DETERMINANTE-------")      
+                print("      ------FIN DE CALCULO DE DETERMINANTE------")      
