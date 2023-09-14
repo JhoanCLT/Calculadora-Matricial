@@ -1,6 +1,6 @@
 import numpy as np
 opcion=1
-while opcion >= 1 and opcion <= 7:
+while opcion >= 1 and opcion <= 8:
     print("--------MENU DE LA CALCULADORA-------")
     print("[1]  Suma de matrices")
     print("[2]  Resta de matrices")
@@ -44,14 +44,9 @@ while opcion >= 1 and opcion <= 7:
             print("Matriz B:")
             print(B)
             print("-----RESULTADO-----")
-
-            for i in range(f1):
-                for j in range(c1):
-                    if j==(c1-1):
-                        print(C[i][j])
-                    else:
-                        print(C[i][j], end=" ")
-            print("-----FIN DE SUMA DE MATRICES------")        
+            print(C)
+            print()
+            print("        -----FIN DE SUMA DE MATRICES------")        
         else:
             print("----NO SE PUEDE SUMAR LAS MATRICES----")
             break
@@ -91,13 +86,8 @@ while opcion >= 1 and opcion <= 7:
                 print("Matriz B:")
                 print(B)
                 print("-----RESULTADO-----")
-
-                for i in range(f1):
-                    for j in range(c1):
-                        if j==(c1-1):
-                            print(C[i][j])
-                        else:
-                            print(C[i][j], end=" ")
+                print(C)
+                print()
                 print("-----FIN DE RESTA DE MATRICES------")        
             else:
                 print("----NO SE PUEDE RESTAR LAS MATRICES----")
@@ -111,23 +101,21 @@ while opcion >= 1 and opcion <= 7:
             f=int(input("Ingrese el numero de filas de la matriz:"))
             c=int(input("Ingrese el numero de columnas de la matriz:"))
             A=np.empty((f,c))
+            C=np.empty((f,c))
             for i in range(f):
                 for j in range(c):
-                    A[i][j]=input("Ingrese el valor de A["+str(i+1)+"]["+str(j+1)+"]:")
+                    A[i][j]=float(input("Ingrese el valor de A["+str(i+1)+"]["+str(j+1)+"]:"))
             e=float(input("Ingrese el escalar a multiplicar:"))
-            
+            for i in range(f):
+                for j in range(c):
+                    C[i][j]=A[i][j]*e
             print()
-            print("LA MATRIZ INGRESADA:")
+            print("LA MATRIZ:")
             print(A, "multiplicado por", e)
             print()
-            print("MATRIZ RESPUESTA:")
-            for i in range(f):
-                for j in range(c):
-                    A[i][j]=A[i][j]*e
-                    if j==(c-1):
-                        print(round(A[i][j],2))
-                    else:
-                        print(round(A[i][j],2), end=" ") 
+           
+            print("RESULTADO:")
+            print(C)
             print("-----------FIN DE PRODUCTO DE UNA MATRIZ CON UN ESCALAR-------")
         
         elif opcion==int(4):
@@ -198,23 +186,18 @@ while opcion >= 1 and opcion <= 7:
                     T[j][i]=dato
 
             print("Matriz original:")
-            print("")
+            print()
             for i in range(m):
                 for j in range(n):
-                    if j==(n-1):
-                        print(round(A[i][j],2))
-                    else:
-
-                        print(round(A[i][j],2), end="  ")
+                    print(A[i][j], end="  ")
+                print()
 
             print("Matriz transpuesta:")
-            print("")
+            print()
             for i in range(n):
                 for j in range(m):
-                    if j==(m-1):
-                        print(round(T[i][j],2))
-                    else:
-                        print(round(T[i][j],2), end="  ")
+                    print(T[i][j], end="  ")
+                print()
             print("---------------FIN DE TRANSPUESTA DE UNA MATRIZ------------------")
 
 
@@ -267,7 +250,7 @@ while opcion >= 1 and opcion <= 7:
 
                 print("Matriz:")
                 print(A)
-                print("Rango de la matriz:", rango)
+                print("Rango de la matriz:", round(rango))
                 print("      -------FIN DE RANGO DE UNA MATRIZ-------")
 
 
@@ -288,4 +271,4 @@ while opcion >= 1 and opcion <= 7:
                 print()
                 print("La determinante es: ", round(determinante))
 
-                print("      ------FIN DE CALCULO DE DETERMINANTE------")      
+                print("      -------FIN DE CALCULO DE DETERMINANTE-------")      
