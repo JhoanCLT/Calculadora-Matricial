@@ -208,23 +208,70 @@ while opcion >= 1 and opcion <= 8:
 #--------------OPCION 6-------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------------------------  
                 print("       -------INICIO DE INVERSA DE UNA MATRIZ-------")
-                print("Solo se acepta matrices cuadradas")
-                rango=int(input("Ingrese el rango de la matriz:"))
-                A=np.empty((rango,rango))
-                for i in range(rango):
-                    for j in range(rango):
-                        A[i][j]=input("Ingrese el valor de A["+str(i+1)+"]["+str(j+1)+"]:")
+                    # Función para calcular la inversa de una matriz usando el método de Gauss-Jordan
+                def calcular_inversa(matriz):
+                        try:
+                            matriz = np.array(matriz, dtype=float)
+                            num_filas, num_columnas = matriz.shape
 
-                determinante=np.linalg.det(A)
-                print()
-                #SI LA DETERMINANTE DE LA MATRIZ ES 0, NO TIENE INVERSA
-                if determinante==0:
-                    print("ESTA MATRIZ NO TIENE INVERSA")
+                            # Verificar si la matriz es cuadrada
+                            if num_filas != num_columnas:
+                                return None
+
+                            # Crear una matriz identidad del mismo tamaño
+                            matriz_identidad = np.identity(num_filas)
+
+                            # Crear una matriz aumentada con la matriz original y la matriz identidad
+                            matriz_aumentada = np.hstack((matriz, matriz_identidad))
+
+                            # Mostrar la matriz aumentada antes de aplicar Gauss-Jordan
+                            print("Matriz aumentada antes de Gauss-Jordan:")
+                            print(matriz_aumentada)
+
+                            # Aplicar el método de Gauss-Jordan
+                            for i in range(num_filas):
+                                # Escalar la fila actual para que el elemento en la diagonal sea 1
+                                diagonal_element = matriz_aumentada[i, i]
+                                matriz_aumentada[i, :] /= diagonal_element
+
+                                # Mostrar la matriz después de escalar la fila
+                                print(f"\nPaso {i + 1}: Escalar fila {i + 1} para que el elemento en la diagonal sea 1")
+                                print(matriz_aumentada)
+
+                                # Eliminar otros elementos en la columna
+                                for j in range(num_filas):
+                                    if j != i:
+                                        factor = matriz_aumentada[j, i]
+                                        matriz_aumentada[j, :] -= factor * matriz_aumentada[i, :]
+
+                                # Mostrar la matriz después de eliminar otros elementos en la columna
+                                print(f"\nPaso {i + 1}: Eliminar otros elementos en la columna {i + 1}")
+                                print(matriz_aumentada)
+
+                            # La parte derecha de la matriz aumentada es la inversa de la matriz original
+                            inversa = matriz_aumentada[:, num_filas:]
+
+                            return inversa.tolist()
+                        except Exception as e:
+                            return None
+
+                    # Ingresa tu matriz aquí (reemplaza esta matriz con la tuya)
+                rango=int(input('Ingrese dimension de matriz: '))
+                print('Ingrese la matriz: ')
+                A= [list(map(float, input().split())) for i in range(rango)]
+                # Calcula la inversa
+                inversa = calcular_inversa(A)
+
+                if inversa:
+                        print("\nInversa de la matriz:")
+                        for fila in inversa:
+                            print(fila)
                 else:
-                    print("La matriz ingresada es:")
-                    print(A)
-                    print("La inversa es:")
-                    print(np.linalg.inv(A))
+                        print("\nLa matriz no tiene inversa o no es cuadrada.")
+
+
+
+
 
                 print("        -------FIN DE INVERSA DE UNA MATRIZ  -------")
 
