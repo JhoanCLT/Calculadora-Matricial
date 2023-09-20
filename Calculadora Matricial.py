@@ -269,15 +269,7 @@ while opcion >= 1 and opcion <= 8:
                 else:
                         print("\nLa matriz no tiene inversa o no es cuadrada.")
 
-
-
-
-
                 print("        -------FIN DE INVERSA DE UNA MATRIZ  -------")
-
-
-
-
 
         elif opcion==int(7):
 #-----------------------------------------------------------------------------------------------------------------------------------------
