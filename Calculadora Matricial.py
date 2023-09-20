@@ -210,11 +210,9 @@ while opcion >= 1 and opcion <= 8:
                 print("       -------INICIO DE INVERSA DE UNA MATRIZ-------")
                     # Función para calcular la inversa de una matriz usando el método de Gauss-Jordan
                 def calcular_inversa(matriz):
-                        try:
+                        
                             matriz = np.array(matriz, dtype=float)
                             num_filas, num_columnas = matriz.shape
-
-                            # Verificar si la matriz es cuadrada
                             if num_filas != num_columnas:
                                 return None
 
@@ -252,22 +250,20 @@ while opcion >= 1 and opcion <= 8:
                             inversa = matriz_aumentada[:, num_filas:]
 
                             return inversa.tolist()
-                        except Exception as e:
-                            return None
+                        #RETORNAMOS la inversa como lista
 
-                    # Ingresa tu matriz aquí (reemplaza esta matriz con la tuya)
+                    # Ingresa tu matriz aquí 
+                print('----------------CALCULO DE LA INVERSA DE UNA MATRIZ-----------------------')
                 rango=int(input('Ingrese dimension de matriz: '))
                 print('Ingrese la matriz: ')
                 A= [list(map(float, input().split())) for i in range(rango)]
-                # Calcula la inversa
+                    # Calcula la inversa
                 inversa = calcular_inversa(A)
-
+                    #Impresion de inversa fila por fila
                 if inversa:
                         print("\nInversa de la matriz:")
                         for fila in inversa:
                             print(fila)
-                else:
-                        print("\nLa matriz no tiene inversa o no es cuadrada.")
 
                 print("        -------FIN DE INVERSA DE UNA MATRIZ  -------")
 
